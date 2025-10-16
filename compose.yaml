@@ -10,4 +10,4 @@ services:
       DS_SUFFIX_NAME: dc=UAFS,dc=COM
       DS_BACKEND_NAME: uafs
     volumes:
-      - ./scripts/example/initdb.d:/container-entrypoint-initdb.d
+      - ./scripts/datas/initdb.d:/container-entrypoint-initdb.d
