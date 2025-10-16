@@ -7,8 +7,11 @@ dsconf localhost backend create --suffix="${DS_SUFFIX_NAME}" --be-name="${DS_BAC
 echo "Adding example dcObject"
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
 dn: ${DS_SUFFIX_NAME}
-dc: ${DS_BACKEND_NAME}
+objectClass: top
 objectClass: dcObject
+objectClass: organization
+o: UAFS Directory
+dc: ${DS_BACKEND_NAME}
 EOF
 
 # persons
