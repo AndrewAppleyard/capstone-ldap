@@ -1,0 +1,13 @@
+services:
+  dirsrv:
+    hostname: uafs
+    container_name: uafs_ldap
+    ports:
+      - "7389:3389"
+      - "3636:3636"
+    environment:
+      DS_DM_PASSWORD: andrewandrew
+      DS_SUFFIX_NAME: dc=UAFS,dc=COM
+      DS_BACKEND_NAME: uafs
+    volumes:
+      - ./scripts/example/initdb.d:/container-entrypoint-initdb.d

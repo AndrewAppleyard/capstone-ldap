@@ -1,0 +1,3 @@
+services:
+  dirsrv:
+    image: aa39853/ldapstuffs:1.0
