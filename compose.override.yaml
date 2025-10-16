@@ -1,3 +1,4 @@
+#using opensource 389ds image
 services:
   dirsrv:
-    image: aa39853/ldapstuffs:1.0
+    image: jeffersonlab/dirsrv:1.6.0
