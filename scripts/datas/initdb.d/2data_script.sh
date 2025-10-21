@@ -32,6 +32,7 @@ sn: Andrew
 cn: Andrew Admin
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -42,6 +43,7 @@ sn: Admin
 cn: Bob Admin
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -52,6 +54,7 @@ sn: Advisor
 cn: Sarah Advisor
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -62,6 +65,7 @@ sn: Advisor
 cn: David Advisor
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -72,6 +76,7 @@ sn: Student
 cn: John Student
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -82,6 +87,7 @@ sn: Student
 cn: Jane Student
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
@@ -92,6 +98,7 @@ sn: Student
 cn: Jake Student
 objectClass: inetorgperson
 objectClass: inetuser
+userPassword: password123
 EOF
 
 

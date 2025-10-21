@@ -1,14 +1,18 @@
-from ldap3 import Server, Connection, ALL, ALL_ATTRIBUTES, LDAPException
+from ldap3 import Server, Connection, ALL, SUBTREE
 
 LDAP_HOST = "localhost"
-LDAP_PORT = 3389
+LDAP_PORT = 7389
 LDAP_USER = "cn=Directory Manager"
 LDAP_PASS = "andrewandrew"
 BASE_DN = "dc=UAFS,dc=COM"
 
+username = "aapply00@uafs.edu"
+password = "password123"
 
 def main():
     print(f"Connecting on {LDAP_HOST}:{LDAP_PORT}")
+
+    user_dn = f"uid={username},cn=Users,cn=Person,{BASE_DN}"
 
     try:
         server = Server(LDAP_HOST, port=LDAP_PORT, get_info=ALL)
@@ -16,21 +20,33 @@ def main():
 
         print("Connection successful")
 
-        print(f"\nSearching groups under {BASE_DN}")
-        conn.search(search_base=BASE_DN, search_filter="(objectClass=groupOfNames)", attributes=ALL_ATTRIBUTES)
+        conn.search(search_base=BASE_DN, search_filter=f"(uid={username})", search_scope=SUBTREE, attributes=["dn"])
 
 
-        if conn.entries:
-            print(f"Found {len(conn.entries)} groups:\n")
-            for entry in conn.entries:
-                print(f" - {entry.entry_dn}")
+        if not conn.entries:
+            print("User not found")
         else:
-            print("Could not find groups in {BASE_DN}")
+            user_dn = conn.entries[0].entry_dn
+            conn.search(search_base=BASE_DN, search_filter=f"(member={user_dn})", search_scope=SUBTREE,attributes=["cn"])
+
+            if not conn.entries:
+                print(f"Could not find {username} in any groups")
+            else:
+                group = conn.entries[0].cn.value
+                print(f"The user {username} is in group {group}")
+
+            if "UAFS_ADMINS" in group:
+                print("Admin route")
+            elif "UAFS_STUDENTS" in group:
+                print("Student rounte")
+            elif "UAFS_ADVISORS" in group:
+                print("Advisor route")
+            else:
+                print("Something bad happened")
+        
 
         conn.unbind()
 
-    except LDAPException as e:
-        print("LDAP conn or query failed", e)
     except Exception as e:
         print("error", e)
 
