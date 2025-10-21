@@ -16,6 +16,15 @@ def main():
 
     try:
         server = Server(LDAP_HOST, port=LDAP_PORT, get_info=ALL)
+
+        try:
+            user_conn = Connection(server, user=user_dn, password=password, auto_bind=True)
+            print(f"Authentication successful for {username}")
+            user_conn.unbind()
+        except Exception:
+            print(f"Authentication failed: Incorrect password for {username}")
+            return
+
         conn = Connection(server, user=LDAP_USER, password=LDAP_PASS, auto_bind=True)
 
         print("Connection successful")
