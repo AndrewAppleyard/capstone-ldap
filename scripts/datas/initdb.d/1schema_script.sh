@@ -26,18 +26,18 @@ EOF
 
 echo "Adding users nsContainer"
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
-dn: cn=users,cn=Person,${DS_SUFFIX_NAME}
+dn: cn=Users,cn=Person,${DS_SUFFIX_NAME}
 changetype: add
 objectClass: top
 objectClass: nsContainer
-cn: users
+cn: Users
 EOF
 
 echo "Adding groups nsContainer"
 ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
-dn: cn=groups,cn=Person,${DS_SUFFIX_NAME}
+dn: cn=Groups,cn=Person,${DS_SUFFIX_NAME}
 changetype: add
 objectClass: top
 objectClass: nsContainer
-cn: groups
+cn: Groups
 EOF
