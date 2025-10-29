@@ -1,4 +1,3 @@
-#using opensource 389ds image
 services:
   dirsrv:
-    image: jeffersonlab/dirsrv:1.6.0
+    image: aa39853/dirsrv:latest
